@@ -1,73 +1,140 @@
-# React + TypeScript + Vite
+# CoolPockett — 4-Step Account Opening Wizard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mobile-first, responsive 4-step account opening wizard for a fictional fintech app called **CoolPockett**.  
+Built with **React + Vite** and custom UI components (inputs, selectable cards, progress dots) to demonstrate fundamentals.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Links (Deliverables)
 
-## React Compiler
+- **GitHub Repo:** <PASTE_YOUR_GITHUB_REPO_LINK_HERE>
+- **Deployed App (Vercel/Netlify):** <PASTE_YOUR_DEPLOYED_LINK_HERE>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features (Requirement Coverage)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Core Wizard
+- **Exactly 4 steps** with **Next / Back** navigation
+- **Progress indicator** (carousel dots)
+- **Step-level validation**:
+  - Errors displayed at field level
+  - **Cannot proceed** until the current step is valid
+- **Resume after reload**:
+  - Wizard step + form data persist using `localStorage`
+  - Refresh returns to the same step with previous entries intact
+- **Mobile-first + responsive**:
+  - Mobile layout is the baseline
+  - Desktop centers content and maintains readable widths similar to the wireframes
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Step Breakdown
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Step 1 — Account basics
+Fields:
+- Full name
+- Email
+- Phone
+- Country of residency
+- Password
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Widget:
+- **Password show/hide**
+- **Password strength indicator** (simple scoring)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Validation examples:
+- Email format
+- Phone length/format (permissive)
+- Password strength (minimum score threshold)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+### Step 2 — Account setup
+Selections (touch-friendly cards/chips):
+- Account type: **Individual | Business**
+- Product goal: **Spend | Save | Invest**
+- Monthly volume slider (mock)
+
+Validation:
+- Must select account type + product goal
+
+---
+
+### Step 3 — Details (Conditional)
+This step changes based on:
+1) **Account type** (from Step 2)
+2) **Country** (from Step 1)
+
+**Individual path**
+- DOB
+- Address line 1
+- City
+- Postal code
+- ID type + ID number
+
+**Business path**
+- Business legal name
+- Registration country
+- Role
+
+**Country-driven conditional**
+- **US → State + SSN last 4**
+- **IN → PAN**
+- **Else → National ID**
+
+Widget:
+- **Mock document upload** showing selected filename
+
+Validation:
+- Path-specific required fields
+- Country-specific required fields (SSN last 4 / PAN / National ID)
+- Document upload required (mock)
+
+---
+
+### Step 4 — Review & submit
+- Review summary of entered data
+- “Account preview” widget changes by:
+  - Account type (Individual/Business)
+  - Product goal (Spend/Save/Invest)
+- Submit shows confirmation state
+- Reset clears persisted state and restarts the flow
+
+---
+
+## Tech Stack
+
+- **React 18**
+- **Vite**
+- CSS (custom styling to match wireframes)
+- No form library used (validation handled manually) to show fundamentals
+
+---
+
+## Project Structure
+
+```text
+src/
+  components/
+    Wizard.jsx
+    ProgressDots.jsx
+    Field.jsx
+    SelectCards.jsx
+    PasswordField.jsx
+    PasswordStrength.jsx
+    FileUpload.jsx
+    ReviewTable.jsx
+    AccountPreview.jsx
+  steps/
+    Step1Basics.jsx
+    Step2Setup.jsx
+    Step3Details.jsx
+    Step4Review.jsx
+  lib/
+    storage.js
+    validators.js
+    countries.js
+  styles/
+    globals.css
+    wizard.css
