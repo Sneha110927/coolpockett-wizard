@@ -1,0 +1,279 @@
+.wizardFrame{
+  background:var(--panel);
+  border:2px solid var(--line);
+  border-radius:0;
+  min-height: calc(100vh - 28px);
+  display:flex;
+  flex-direction:column;
+}
+
+.wizardHeader{
+  padding:18px 18px 8px;
+  border-bottom:1px solid var(--line-2);
+}
+.headerRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.backIcon{
+  width:36px;height:36px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.backIcon:disabled{opacity:.4; cursor:not-allowed;}
+.title{
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.1px;
+}
+
+.centerBrand{
+  padding:14px 18px 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+.brandName{
+  font-size:28px;
+  font-weight:700;
+}
+.brandSub{
+  margin-top:-6px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.progressWrap{
+  padding:8px 0 2px;
+  display:flex;
+  justify-content:center;
+}
+
+.content{
+  flex:1;
+  padding:18px;
+  display:flex;
+  justify-content:center;
+}
+.formCard{
+  width: min(520px, 100%);
+  padding:10px 2px;
+}
+
+.field{
+  margin:14px 0 0;
+}
+.labelRow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-end;
+  margin-bottom:6px;
+}
+.label{
+  font-size:13px;
+  font-weight:600;
+  color:#101828;
+}
+.hint{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.input, .select, .fileBtn{
+  width:100%;
+  height:44px;
+  padding:0 12px;
+  border:2px solid var(--line);
+  border-radius:2px;
+  outline:none;
+  font-size:14px;
+  background:#fff;
+}
+.input:focus, .select:focus{
+  border-color:var(--focus);
+  box-shadow:0 0 0 3px rgba(46,144,250,.15);
+}
+.input::placeholder{color:#98a2b3}
+
+.error{
+  margin-top:6px;
+  font-size:12px;
+  color:var(--danger);
+}
+
+.pwRow{
+  position:relative;
+}
+.pwToggle{
+  position:absolute;
+  right:10px;
+  top:10px;
+  width:24px;height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--line);
+  background:#fff;
+  cursor:pointer;
+}
+.pwBar{
+  margin-top:10px;
+  height:4px;
+  background:var(--line-2);
+  width:100%;
+  position:relative;
+}
+.pwFill{
+  height:100%;
+  width:0%;
+  background:var(--ink);
+  transition:width .2s ease;
+}
+.pwText{
+  margin-top:6px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.cardsGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.cardsCol{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+.cardChoice{
+  border:2px solid var(--line);
+  background:#fff;
+  height:56px;
+  border-radius:2px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  cursor:pointer;
+  user-select:none;
+}
+.cardChoice[aria-pressed="true"]{
+  border-color:var(--ink);
+  box-shadow:0 0 0 3px rgba(11,18,32,.10);
+}
+
+.sliderRow{
+  margin-top:14px;
+}
+.sliderTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:6px;
+}
+.range{
+  width:100%;
+}
+
+.footer{
+  padding:18px;
+  border-top:1px solid var(--line-2);
+  display:flex;
+  justify-content:center;
+}
+.footerInner{
+  width: min(520px, 100%);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+.stepText{
+  font-size:12px;
+  color:var(--muted);
+}
+.navRow{
+  width:100%;
+  display:flex;
+  gap:12px;
+}
+.btn{
+  height:46px;
+  border:2px solid var(--line);
+  background:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+.btnPrimary{
+  background:var(--btn);
+  color:var(--btnText);
+  border-color:var(--btn);
+}
+.btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+.btnWide{
+  width:100%;
+}
+.btnHalf{
+  width:50%;
+}
+
+.reviewPanels{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+.panel{
+  border:2px solid var(--line);
+  padding:14px;
+  background:#fff;
+}
+.panelTitle{
+  font-weight:800;
+  margin-bottom:10px;
+}
+.kv{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px 12px;
+  font-size:13px;
+}
+.kv .k{color:var(--muted)}
+.previewBox{
+  border:2px solid var(--ink);
+  padding:14px;
+  background:#fff;
+}
+.bullets{
+  margin:10px 0 0;
+  padding-left:18px;
+  color:#344054;
+  font-size:13px;
+}
+
+@media (min-width: 980px){
+  .wizardFrame{
+    min-height: 720px;
+  }
+  .content{
+    padding:26px 18px;
+  }
+  .formCard{
+    padding:14px 0;
+  }
+  .reviewPanels{
+    grid-template-columns:1fr;
+  }
+}
